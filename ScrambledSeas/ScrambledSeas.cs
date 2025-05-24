@@ -57,7 +57,7 @@ namespace ScrambledSeas
     static class Main
     {
         //Update this with every version
-        public const int version = 60;
+        public const int version = 61;
         //These 2 constants should be future proof. Changing them will break save compatibility
         public const int nArchipelagos = 15;
         public const int nIslandsPer = 15;
@@ -119,7 +119,7 @@ namespace ScrambledSeas
                 //Load entire ScrambledSeasSaveContainer from save file
                 Main.mySaveContainer = SaveFileHelper.Load<ScrambledSeasSaveContainer>("ScrambledSeas");
                 
-                if (Main.mySaveContainer.version < 60) { //TODO: update min version if save compatibility breaks again
+                if (Main.mySaveContainer.version < 61) { //TODO: update min version if save compatibility breaks again
                     NotificationUi.instance.ShowNotification("ERROR: This save is not\ncompatiblewith this version\nof Scrambled Seas");
                     throw new System.InvalidOperationException("ERROR: This save is not compatible with this version of Scrambled Seas");
                 }
@@ -271,12 +271,12 @@ namespace ScrambledSeas
             regionToIslandIdxs.Add(0, new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 });
             bottomToRegion.Add("bottom plane A", 0);
             // Emerald
-            regionToName.Add(1, "Region Emerald");
+            regionToName.Add(1, "Region Emerald (new smaller)");
             regionToIslandIdxs.Add(1, new List<int>() { 9, 10, 11, 12, 13, 22 });
             bottomToRegion.Add("bottom plane E", 1);
             // Aestrin
             regionToName.Add(2, "Region Medi");
-            regionToIslandIdxs.Add(2, new List<int>() { 14, 15, 16, 17, 19, 21, 23 });
+            regionToIslandIdxs.Add(2, new List<int>() { 15, 16, 17, 19, 21, 23, 33, 34, 35 });
             bottomToRegion.Add("bottom plane M", 2);
             // Oasis
             regionToIslandIdxs.Add(3, new List<int>() { 20 });
@@ -285,6 +285,18 @@ namespace ScrambledSeas
             // Chronos
             regionToIslandIdxs.Add(5, new List<int>() { 25 });
             bottomToRegion.Add("bottom plane chronos", 5);
+            // Fire Fish
+            // Comment the FFL section if it causes problem and hope that works
+            regionToName.Add(6, "Region Emerald Lagoon");
+            regionToIslandIdxs.Add(6, new List<int>() { 26, 27, 28, 29, 31 });
+            bottomToRegion.Add("island 26 lagoon parent terrain (-1)", 6);
+            // Despair
+            regionToIslandIdxs.Add(7, new List<int>() { 30 });
+            bottomToRegion.Add("bottom plane (1)", 7);
+            // Eleann
+            regionToIslandIdxs.Add(8, new List<int>() { 32 });
+            // Bone Island
+            regionToIslandIdxs.Add(9, new List<int>() { 36 });
             
             //Convert stored ints to floats
             float islandSpread = Main.mySaveContainer.islandSpread;
